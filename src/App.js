@@ -8,7 +8,8 @@ class App extends Component {
     super(props);
     console.log(props);
     this.state = {
-      sups: []
+      sups: [],
+      supsAnother: []
     }
   }
 
@@ -17,28 +18,29 @@ class App extends Component {
         .then(res => res.json())
         .then((result) => {
             this.setState({
-              sups: result
+              sups: result,
+              supsAnother: result
             })
         })
   }
   
+  checkAndSort = () => {
+    if (this.props.location.search === "?sort=author") {
+      console.log("coming here");
+      let supsCopy = this.state.sups;
+      supsCopy.sort(compare);
+    } else {
+      this.state.sups = this.state.supsAnother;
+    }
+  }
+
   render() {
 
-    let { sups } = this.state;
+    let { sups, supsAnother } = this.state;
     let { search } = this.props.location;
     
-    let checkAndSort = () => {
-      if (search === "?sort=author") {
-        console.log("coming here");
-        let supsCopy = sups;
-        supsCopy.sort(compare);
-        this.setState({
-          sups: supsCopy
-        })
-      } 
-    }
-
-checkAndSort();
+    this.checkAndSort();
+    
     return(
       <div>
             <Link to="/users?sort=author">
