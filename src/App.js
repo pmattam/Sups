@@ -23,33 +23,31 @@ class App extends Component {
             })
         })
   }
-
-
-
-  
   
   render() {
 
     let { sups, supsAnother } = this.state;
     let { search } = this.props.location;
     
-    
     let checkAndSort = () => {
-      let supsList = [];
+
       if (search === "?sort=author") {
         console.log("coming here");
         let supsCopy = sups;
         supsCopy.sort(compare);
-        supsList = supsCopy;
+        this.setState({
+          sups: supsCopy
+        })
       } else {
-        supsList=supsAnother;
+        this.setState({
+          sups: supsAnother
+        })
       }
-      this.setState({
-        sups: supsList
-      })
+
     }
-    
+
     checkAndSort();
+
     return(
       <div>
             <Link to="/users?sort=author">
