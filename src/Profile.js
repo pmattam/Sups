@@ -23,7 +23,7 @@ class Profile extends Component {
       }
 
     saveNewSup = (saveSup) => {
-        let supsCopy = this.state.sups;
+        let supsCopy = Object.assign([], this.state.sups);
         let usernameForSavingNewSups = this.props.match.params.username;
         let userId = this.state.sups.filter(sup => sup.author.toLowerCase() === usernameForSavingNewSups.toLowerCase())[0].userId;
 

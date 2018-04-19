@@ -4,7 +4,7 @@ import About from './About';
 import Profile from './Profile';
 import Navbar from './Navbar';
 import App from './App';
-// import SortByUsers from './SortByUsers';
+
 import {
     HashRouter as Router,
     Route

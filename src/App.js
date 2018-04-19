@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Sups from './components/Sups';
 import { goFetch, compare } from './lib/helper-functions';
+// import { goFetch } from './lib/helper-functions';
 import { Link } from 'react-router-dom';
 
 class App extends Component {
@@ -27,11 +28,10 @@ class App extends Component {
   checkAndSort = () => {
     if (this.props.location.search === "?sort=author") {
       console.log("coming here");
-      let supsCopy = this.state.sups;
+      let supsCopy = Object.assign([], this.state.sups);
       supsCopy.sort(compare);
-    } else {
-      this.state.sups = this.state.supsAnother;
-    }
+      this.state.sups = supsCopy;
+    } 
   }
 
   render() {
