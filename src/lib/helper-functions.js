@@ -17,3 +17,8 @@ export let compare = (a, b) => {
     }
     return comparison;
 }
+
+export let sortUsers = (result) => {
+    console.log("coming here");
+    return result.sort(compare);
+}
