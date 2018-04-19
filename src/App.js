@@ -32,8 +32,12 @@ class App extends Component {
         console.log("coming here");
         let supsCopy = sups;
         supsCopy.sort(compare);
+        this.setState({
+          sups: supsCopy
+        })
       } 
     }
+
 checkAndSort();
     return(
       <div>
