@@ -32,11 +32,8 @@ class App extends Component {
         console.log("coming here");
         let supsCopy = sups;
         supsCopy.sort(compare);
-      } else {
-        console.log(search);
-      }
+      } 
     }
-
 checkAndSort();
     return(
       <div>
