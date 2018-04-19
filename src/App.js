@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Sups from './components/Sups';
-import { goFetch } from './lib/helper-functions';
+import { goFetch, compare } from './lib/helper-functions';
+import { Link } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      sups: []
+      sups: [],
+      supsAnother: []
     }
   }
 
@@ -15,16 +18,43 @@ class App extends Component {
         .then(res => res.json())
         .then((result) => {
             this.setState({
-              sups: result
+              sups: result, 
+              supsAnother: result
             })
         })
   }
 
+
+
+  
+  
   render() {
-    let { sups } = this.state;
-    console.log(sups);
+
+    let { sups, supsAnother } = this.state;
+    let { search } = this.props.location;
+    
+    
+    let checkAndSort = () => {
+      let supsList = [];
+      if (search === "?sort=author") {
+        console.log("coming here");
+        let supsCopy = sups;
+        supsCopy.sort(compare);
+        supsList = supsCopy;
+      } else {
+        supsList=supsAnother;
+      }
+      this.setState({
+        sups: supsList
+      })
+    }
+    
+    checkAndSort();
     return(
       <div>
+            <Link to="/users?sort=author">
+            <button>Users</button>
+            </Link>
         <Sups 
           sups={sups}
         />

@@ -4,6 +4,7 @@ import About from './About';
 import Profile from './Profile';
 import Navbar from './Navbar';
 import App from './App';
+// import SortByUsers from './SortByUsers';
 import {
     HashRouter as Router,
     Route
@@ -16,7 +17,7 @@ let Screen = () =>
             <Route exact path="/" component={Homepage}/>
             <Route exact path="/about" component={About}/>
             <Route exact path="/users" component={App}/>
-            <Route exact path="/users/:username" component={Profile}/>
+            <Route exact path="/users/:username" component={Profile}/>         
         </div>
     </Router>
 
