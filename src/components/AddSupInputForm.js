@@ -7,10 +7,10 @@ let AddSupInputForm = ({ sups, saveNewSup }) => {
         <div>
             <form>
                 <input className="sup-input" onChange={(event) => {
-                     event.preventDefault()
+                    event.preventDefault()
                     getSupText(newSup, event.target.value)
-               
-            }}/>
+                    }
+                 }/>
                 <button className="save-btn" onClick={() => saveNewSup(newSup)}>Submit</button>
             </form>
         </div>

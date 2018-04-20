@@ -1,7 +1,22 @@
-import React, { Component } from 'react';
-import { goFetch } from './lib/helper-functions';
+import React, { Component } from "react";
+import { goFetch } from "./lib/helper-functions";
 import moment from 'moment';
-import AddSupInputForm from './components/AddSupInputForm';
+import AddSupInputForm from "./components/AddSupInputForm";
+import { connect } from "react-redux";
+
+// let mapStateToProps = state => {
+//     return {sups: state.sups};
+// };
+
+// let mapDispatchToProps = dispatch => {
+//     return {dispatch: dispatch};
+// }
+
+// let Profile = () => {
+
+// };
+
+// export default Profile;
 
 class Profile extends Component {
     constructor(props) {
@@ -17,10 +32,10 @@ class Profile extends Component {
             .then(res => res.json())
             .then((result) => {
                 this.setState({
-                    sups: result
+                  sups: result
                 })
             })
-    }
+      }
 
     saveNewSup = (saveSup) => {
         // let supsCopy = Object.assign([], this.state.sups);
@@ -32,7 +47,7 @@ class Profile extends Component {
         saveSup.time = new Date();
         // supsCopy.push(saveSup);
 
-        this.setState(state => ({
+        this.setState(state => ({ 
             sups: state.sups.concat(saveSup)
         }))
     }
@@ -41,24 +56,22 @@ class Profile extends Component {
 
         let { sups } = this.state;
 
-        return ( <
-            div >
-            <
-            h1 > Welcome to { this.props.match.params.username }
-            's profile!</h1> <
-            div > {
-                sups.filter(sup => this.props.match.params.username.toLowerCase() === sup.author.toLowerCase()).map(sup =>
-                    <
-                    p > { sup.body } | { moment(sup.time).fromNow() } < /p>)
-                } <
-                /div> <
-                AddSupInputForm
-                sups = { sups }
-                saveNewSup = { this.saveNewSup }
-                /> <
-                /div>
-            )
-        }
+        return(
+            <div>
+                <h1>Welcome to {this.props.match.params.username}'s profile!</h1>
+                <div>
+                {
+                    sups.filter(sup => this.props.match.params.username.toLowerCase() === sup.author.toLowerCase()).map(sup => 
+                    <p>{sup.body} | {moment(sup.time).fromNow()}</p>)
+                }
+                </div>
+                <AddSupInputForm
+                    sups={sups}
+                    saveNewSup={this.saveNewSup}
+                />
+            </div>
+        )
     }
+}
 
-    export default Profile;
+export default Profile;

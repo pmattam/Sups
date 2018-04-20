@@ -1,16 +1,32 @@
 // import React, { Component } from 'react';
-// import { goFetch, sortUsers } from './lib/helper-functions';
+//import { goFetch, sortUsers } from './lib/helper-functions';
 import React from 'react';
 import { sortUsers } from './lib/helper-functions';
-import Sups from './components/Sups';
+//import Sups from './components/Sups';
+import Sup from "./components/Sup";
+import { connect } from "react-redux";
 
-let SortByUsers = ({ sups }) =>
-    <div >
-        <Sups />
+let mapStateToProps = state => {
+    return {sups: state.sups};
+};
+
+let SortByUsersList = ({ sups }) => {
+    let sortedSups = sortUsers(sups);
+    console.log("sorted sups", sortedSups);
+    return <div>
+        {
+            sortedSups.map(sup =>
+            <Sup 
+                sup={sup}
+            />)
+        }
     </div>
+}
 
+const SortByUsers = connect(mapStateToProps)(SortByUsersList);
 
 export default SortByUsers;
+
 
 // class SortByUsers extends Component {
 //     constructor(props) {
