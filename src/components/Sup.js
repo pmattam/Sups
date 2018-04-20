@@ -8,5 +8,4 @@ let Sup = ({ sup }) =>
     <p><Link to={`/users/${sup.author}`}>{sup.author}</Link> | {moment(sup.time).fromNow()}</p>
   </div>
 
-
 export default Sup;

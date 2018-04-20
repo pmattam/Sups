@@ -6,7 +6,11 @@ let AddSupInputForm = ({ sups, saveNewSup }) => {
     return(
         <div>
             <form>
-                <input className="sup-input" onChange={(event) => getSupText(newSup, event.target.value)}/>
+                <input className="sup-input" onChange={(event) => {
+                     event.preventDefault()
+                    getSupText(newSup, event.target.value)
+               
+            }}/>
                 <button className="save-btn" onClick={() => saveNewSup(newSup)}>Submit</button>
             </form>
         </div>
