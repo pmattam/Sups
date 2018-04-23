@@ -1,16 +1,22 @@
 import { FETCH_SUPS, SAVE_SUP, SORT_SUPS } from "./constants";
 
-export const fetchSups = (sups) => ({
+export let fetchSups = (sups) => ({
     type: FETCH_SUPS,
     payload: { sups }
 });
 
-export const saveNewSup = (newSup) => ({
+fetchSups.toString = () => FETCH_SUPS;
+
+export let saveNewSup = (newSup) => ({
     type: SAVE_SUP,
     payload: { newSup }
 });
 
-export const sortSups = (value) => ({
+saveNewSup.toString = () => SAVE_SUP;
+
+export let sortSups = (value) => ({
     type: SORT_SUPS,
     payload: { value }
 });
+
+sortSups.toString = () => SORT_SUPS;
