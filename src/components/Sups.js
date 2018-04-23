@@ -1,11 +1,10 @@
 import React from "react";
 import Sup from "./Sup";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
-// Explicit Return didn't work ... why?
-let mapStateToProps = state => ({sups: state.sups});
+// let mapStateToProps = state => ({sups: state.sups});
 
-let SupsList = ({ sups }) => (
+let Sups = ({ sups }) => (
     <div>
         {
             sups.map(sup =>
@@ -16,7 +15,7 @@ let SupsList = ({ sups }) => (
     </div>
 );
 
-const Sups = connect(mapStateToProps)(SupsList);
+// const Sups = connect(mapStateToProps)(SupsList);
 
 export default Sups;
 

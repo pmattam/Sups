@@ -1,77 +1,67 @@
 import React, { Component } from "react";
-import { goFetch } from "./lib/helper-functions";
+import { buildNewSupObj, goFetch, getSupText } from "./lib/helper-functions";
+import { fetchSups, saveNewSup } from "./actions/all-actions"
 import moment from 'moment';
-import AddSupInputForm from "./components/AddSupInputForm";
 import { connect } from "react-redux";
 
-// let mapStateToProps = state => {
-//     return {sups: state.sups};
-// };
+class ProfileForUser extends Component {
 
-// let mapDispatchToProps = dispatch => {
-//     return {dispatch: dispatch};
-// }
-
-// let Profile = () => {
-
-// };
-
-// export default Profile;
-
-class Profile extends Component {
-    constructor(props) {
-        super(props);
-        console.log("Comes in as", this.props);
-        this.state = {
-            sups: []
+    componentDidMount() {
+        if(this.props.sups.length === 0) {
+            goFetch() 
+                .then(res => res.json())
+                .then((sups) => {
+                    this.props.fetchSups(sups)
+                })
         }
     }
 
-    componentDidMount() {
-        goFetch()
-            .then(res => res.json())
-            .then((result) => {
-                this.setState({
-                  sups: result
-                })
-            })
-      }
-
-    saveNewSup = (saveSup) => {
-        // let supsCopy = Object.assign([], this.state.sups);
-        let usernameForSavingNewSups = this.props.match.params.username;
-        let userId = this.state.sups.filter(sup => sup.author.toLowerCase() === usernameForSavingNewSups.toLowerCase())[0].userId;
-
-        saveSup.userId = userId;
-        saveSup.author = usernameForSavingNewSups;
-        saveSup.time = new Date();
-        // supsCopy.push(saveSup);
-
-        this.setState(state => ({ 
-            sups: state.sups.concat(saveSup)
-        }))
-    }
-
     render() {
+        let propsAuthor = this.props.match.params.username;
+        let propsSups = this.props.sups;
+        console.log("profile-sups", propsSups);
+        console.log("profile-Auth", propsAuthor);
+        let newSup = {};
 
-        let { sups } = this.state;
-
+        console.log()
         return(
             <div>
-                <h1>Welcome to {this.props.match.params.username}'s profile!</h1>
+                <h1>Welcome to {propsAuthor}'s profile!</h1>
                 <div>
                 {
-                    sups.filter(sup => this.props.match.params.username.toLowerCase() === sup.author.toLowerCase()).map(sup => 
-                    <p>{sup.body} | {moment(sup.time).fromNow()}</p>)
+                    propsSups.filter(sup => sup.author.toLowerCase() === propsAuthor.toLowerCase()).map(sup => 
+                        <p>{sup.body} | {moment(sup.time).fromNow()}</p>)
                 }
                 </div>
-                <AddSupInputForm
-                    sups={sups}
-                    saveNewSup={this.saveNewSup}
-                />
+                <div>
+                    <form ref="form">
+                        <input className="sup-input" ref="sup-body" onChange={(event) => {
+                                event.preventDefault();
+                                getSupText(newSup, event.target.value)
+                            }
+                        }/>
+                        <button className="save-btn" onClick={ (event) => {
+                                event.preventDefault();
+                                this.refs.form.reset();
+                                return this.props.saveNewSup(buildNewSupObj(propsAuthor, propsSups, newSup)) 
+                            }
+                        }>Save</button>
+                    </form>
+                </div>
             </div>
         )
     }
 }
+
+let mapStateToProps = state => ({sups: state.sups});
+
+let mapDispatchToProps = dispatch => {
+    return { 
+        fetchSups: sups => dispatch(fetchSups(sups)),
+        saveNewSup: newSup => dispatch(saveNewSup(newSup))
+    };
+};
+  
+let Profile = connect(mapStateToProps, mapDispatchToProps)(ProfileForUser);
 
 export default Profile;
