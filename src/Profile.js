@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { buildNewSupObj, goFetch, getSupText } from "./lib/helper-functions";
 import { fetchSups, saveNewSup } from "./actions/all-actions"
 import moment from 'moment';
-import { connect } from "react-redux";
 
 class ProfileForUser extends Component {
 
@@ -19,11 +19,8 @@ class ProfileForUser extends Component {
     render() {
         let propsAuthor = this.props.match.params.username;
         let propsSups = this.props.sups;
-        console.log("profile-sups", propsSups);
-        console.log("profile-Auth", propsAuthor);
         let newSup = {};
 
-        console.log()
         return(
             <div>
                 <h1>Welcome to {propsAuthor}'s profile!</h1>

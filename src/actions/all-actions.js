@@ -1,4 +1,4 @@
-import { FETCH_SUPS, SAVE_SUP, SORT_SUPS } from "./constants";
+import { FETCH_SUPS, SAVE_SUP, SORT_SUPS } from "../constants/action-types";
 
 export let fetchSups = (sups) => ({
     type: FETCH_SUPS,
