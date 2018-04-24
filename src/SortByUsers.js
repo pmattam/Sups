@@ -1,63 +1,66 @@
-// import React, { Component } from 'react';
-//import { goFetch, sortUsers } from './lib/helper-functions';
-import React from 'react';
-import { sortUsers } from './lib/helper-functions';
-//import Sups from './components/Sups';
-import Sup from "./components/Sup";
-import { connect } from "react-redux";
+// //########## NEW CODE ##########//
 
-let mapStateToProps = state => {
-    return {sups: state.sups};
-};
+// // import React, { Component } from 'react';
+// //import { goFetch, sortUsers } from './lib/helper-functions';
+// import React from 'react';
+// import { sortUsers } from './lib/helper-functions';
+// //import Sups from './components/Sups';
+// import Sup from "./components/Sup";
+// import { connect } from "react-redux";
 
-let SortByUsersList = ({ sups }) => {
-    let sortedSups = sortUsers(sups);
-    console.log("sorted sups", sortedSups);
-    return <div>
-        {
-            sortedSups.map(sup =>
-            <Sup 
-                sup={sup}
-            />)
-        }
-    </div>
-}
+// let mapStateToProps = state => {
+//     return {sups: state.sups};
+// };
 
-const SortByUsers = connect(mapStateToProps)(SortByUsersList);
-
-export default SortByUsers;
-
-
-// class SortByUsers extends Component {
-//     constructor(props) {
-//         super(props);
-//         console.log("Coming here");
-//         this.state = {
-//             sups: []
+// let SortByUsersList = ({ sups }) => {
+//     let sortedSups = sortUsers(sups);
+//     console.log("sorted sups", sortedSups);
+//     return <div>
+//         {
+//             sortedSups.map(sup =>
+//             <Sup 
+//                 sup={sup}
+//             />)
 //         }
-//     }
-
-//     componentDidMount() {
-
-//         goFetch()
-//             .then(res => res.json())
-//             .then((result) => {
-//                 let sortedResult = sortUsers(result);
-//                 this.setState({
-//                   sups: sortedResult
-//                 })
-//             })
-//       }
-
-//     render() {
-//         let { sups } = this.state;
-
-//         return(
-//             <div>
-//                 <Sups 
-//                     sups={sups}
-//                 />
-//             </div>
-//         )
-//     }
+//     </div>
 // }
+
+// const SortByUsers = connect(mapStateToProps)(SortByUsersList);
+
+// export default SortByUsers;
+
+// //########## OLD CODE ##########//
+
+// // class SortByUsers extends Component {
+// //     constructor(props) {
+// //         super(props);
+// //         console.log("Coming here");
+// //         this.state = {
+// //             sups: []
+// //         }
+// //     }
+
+// //     componentDidMount() {
+
+// //         goFetch()
+// //             .then(res => res.json())
+// //             .then((result) => {
+// //                 let sortedResult = sortUsers(result);
+// //                 this.setState({
+// //                   sups: sortedResult
+// //                 })
+// //             })
+// //       }
+
+// //     render() {
+// //         let { sups } = this.state;
+
+// //         return(
+// //             <div>
+// //                 <Sups 
+// //                     sups={sups}
+// //                 />
+// //             </div>
+// //         )
+// //     }
+// // }
