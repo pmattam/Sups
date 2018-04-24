@@ -1,4 +1,4 @@
-import sort from "lodash/sortBy";
+// import sort from "lodash/sortBy";
 
 export let fetchSupsReducer = (state, action) => ({
     ...state,
@@ -11,7 +11,14 @@ export let saveSupReducer = (state, action) => ({
 });
 
 export let sortSupsReducer = (state, action) => {
-    if (action.payload.value === "user") {
-        return {...state, sups: sort(state.sups, "author") }
+    // console.log(action.payload.value);
+    // console.log(state.sortBy);
+    return {
+        // if (action.payload.value === "user") {
+        //     return {...state, sups: sort(state.sups, "author") }
+        // }
+        ...state,
+        sups: state.sups,
+        sortBy: state.sortBy.replace(state.sortBy, action.payload.value)
     }
-};
+}
