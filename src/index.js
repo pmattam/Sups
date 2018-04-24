@@ -14,3 +14,14 @@ let reactAppReduxStore =
     </Provider>
     
 ReactDOM.render(reactAppReduxStore, document.getElementById("root"));
+
+// let reactAppReduxStore = 
+//     <div> 
+//         <Provider store={store}>
+//             <Screen />
+//         </Provider>
+
+//         <Provider store={store2}>
+//             <OtherScreen />
+//         </Provider>
+//     </div>

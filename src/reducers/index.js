@@ -12,7 +12,7 @@ let reducers = {
     [sortSups]: sortSupsReducer
 };
 
-// fallbackReducer acts like default return state like in switch...case when initialize the app @INIT
+// fallbackReducer acts like default return state like in switch...case when initialize the app when action.type is @@INIT
 let fallbackReducer = state => state;
 
 let reducer = (state = initialState, action) => {
